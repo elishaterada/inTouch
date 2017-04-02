@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class KeepInTouchPage {
+export class InTouchPage {
   navigateTo() {
     return browser.get('/');
   }

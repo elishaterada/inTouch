@@ -1,10 +1,10 @@
-import { KeepInTouchPage } from './app.po';
+import { InTouchPage } from './app.po';
 
-describe('keep-in-touch App', () => {
-  let page: KeepInTouchPage;
+describe('in-touch App', () => {
+  let page: InTouchPage;
 
   beforeEach(() => {
-    page = new KeepInTouchPage();
+    page = new InTouchPage();
   });
 
   it('should display message saying app works', () => {
