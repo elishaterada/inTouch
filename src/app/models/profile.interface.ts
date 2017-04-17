@@ -8,6 +8,7 @@ export interface Profile {
   dateModified: string;
   firstName?: string;
   lastName?: string;
+  email?: string;
   avatar?: string;
   title?: string;
   employer?: string;

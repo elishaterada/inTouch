@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -9,6 +9,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
+import { ProfileCardComponent } from './main/profile-card/profile-card.component';
+import { ProfileFormComponent } from './main/profile-form/profile-form.component';
 
 // Firebase Config
 export const firebaseConfig = {
@@ -22,11 +24,13 @@ export const firebaseConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    ProfileCardComponent,
+    ProfileFormComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
     MaterialModule,
