@@ -2,7 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
+import { MdButtonModule, MdInputModule, MdCardModule } from '@angular/material';
+import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 
@@ -33,7 +34,9 @@ export const firebaseConfig = {
     ReactiveFormsModule,
     HttpModule,
     AppRoutingModule,
-    MaterialModule,
+    MdButtonModule,
+    MdCardModule,
+    MdInputModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],

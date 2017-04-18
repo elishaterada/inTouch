@@ -1,2 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+$primary-color: #607D8B;
+$accent-color: #2196F3;
+
+.full-width {
+  width: 100%;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.mat-card {
+  &--sm {
+    width: 500px;
+  }
+  &::before {
+    transition: all 0.25s ease;
+    opacity: 0;
+    position: absolute;
+    content: '';
+    display: block;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+  }
+  &--selected::before {
+    opacity: 1;
+    background: $accent-color;
+    width: 5px;
+  }
+}
+
+#main-container {
+  display: grid;
+  grid-template-columns: 370px auto;
+  grid-column-gap: 20px;
+}

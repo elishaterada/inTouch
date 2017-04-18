@@ -8,10 +8,11 @@ export interface Profile {
   dateModified: string;
   firstName?: string;
   lastName?: string;
-  email?: string;
-  avatar?: string;
   title?: string;
-  employer?: string;
+  company?: string;
+  email?: string;
+  phone?: string;
+  avatar?: string;
   summary?: string;
   engagementVibe?: number;
   closingPotential?: number;

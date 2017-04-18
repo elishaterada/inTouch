@@ -98,9 +98,9 @@
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@angular/http/-/http-4.0.1.tgz#bf87e7da9dc1f1567f246f9a09723e1cc3543d32"
 
-"@angular/material@^2.0.0-beta.2":
-  version "2.0.0-beta.2"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-beta.2.tgz#65ee8733990347b7518b7f42113e02e069dc109b"
+"@angular/material@^2.0.0-beta.3":
+  version "2.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-2.0.0-beta.3.tgz#ec31dee61d7300ece28fee476852db236ded1e13"
 
 "@angular/platform-browser-dynamic@^4.0.0":
   version "4.0.1"
@@ -4129,13 +4129,9 @@ ripemd160@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-1.0.1.tgz#93a4bbd4942bc574b69a8fa57c71de10ecca7d6e"
 
-rsvp@3.2.1:
+rsvp@3.2.1, rsvp@^3.0.17:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-3.2.1.tgz#07cb4a5df25add9e826ebc67dcc9fd89db27d84a"
-
-rsvp@^3.0.17:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-3.5.0.tgz#a62c573a4ae4e1dfd0697ebc6242e79c681eaa34"
 
 run-async@^2.2.0:
   version "2.3.0"

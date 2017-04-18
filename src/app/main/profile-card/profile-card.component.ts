@@ -4,13 +4,20 @@ import { Profile } from '../../models/profile.interface';
 @Component({
   selector: 'app-profile-card',
   template: `
-    <md-card>
-      <md-card-content>
-        <p>
-          {{ profile.firstName }} {{ profile.lastName }}
-        </p>
-      </md-card-content>
-    </md-card>
+    <div>
+      <p>
+        {{ profile?.firstName }} {{ profile?.lastName }}
+      </p>
+      <p>
+        {{ profile?.title }} at {{ profile?.company }}
+      </p>
+      <p>
+        {{ profile?.email }} {{ profile?.phone }}
+      </p>
+      <p>
+        {{ profile?.summary }}
+      </p>
+    </div>
   `,
   styles: []
 })
