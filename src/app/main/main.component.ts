@@ -7,11 +7,15 @@ import { Profile } from '../models/profile.interface';
   template: `
     <div id="main-container">
       <div>
-        <button
-          md-raised-button
-          color="primary"
-          (click)="addMode = true"
-        >New</button>
+        <md-card>
+          <md-card-content>
+            <button
+                md-raised-button
+                color="accent"
+                (click)="addMode = true"
+            >New</button>
+          </md-card-content>
+        </md-card>
         <md-card
           class="clickable"
           [ngClass]="{'mat-card--selected': profile === selectedProfile}"
