@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Profile } from '../../models/profile.interface';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-profile-form',
@@ -15,7 +16,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
             formControlName="firstName"
           >
           <md-error
-              *ngIf="required('firstName')">
+            *ngIf="required('firstName')">
             This field is required
           </md-error>
         </md-input-container>
@@ -63,6 +64,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
           <md-input-container class="full-width">
             <textarea
               mdInput
+              mdTextareaAutosize
               placeholder="Summary"
               formControlName="summary"
             ></textarea>
@@ -71,7 +73,7 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
       <div>
         <button
           md-raised-button
-          color="primary"
+          color="accent"
           [disabled]="form.invalid"
         >
           Save
@@ -83,6 +85,9 @@ import { AngularFire, FirebaseListObservable } from 'angularfire2';
 })
 export class ProfileFormComponent implements OnInit {
   profiles: FirebaseListObservable<Profile[]>;
+  profile: Profile;
+  now: string;
+
   form = this.fb.group({
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
@@ -90,7 +95,10 @@ export class ProfileFormComponent implements OnInit {
     company: '',
     email: '',
     phone: '',
-    summary: ''
+    summary: '',
+    candidateVibe: 0,
+    engagementVibe: 0,
+    teamVibe: 0
   });
 
   constructor(
@@ -104,7 +112,15 @@ export class ProfileFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.profile = this.form.value;
+
+    // Track timestamp
+    this.now = moment().format();
+    this.profile.dateCreated = this.now;
+    this.profile.dateModified = this.now;
+
     this.profiles.push(this.form.value);
+
     this.form.reset();
   }
 

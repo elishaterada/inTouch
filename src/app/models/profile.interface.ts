@@ -20,4 +20,5 @@ export interface Profile {
   toDo?: [ToDo];
   log?: [EngagementLog];
   links?: [Link];
+  $key?: string;
 }

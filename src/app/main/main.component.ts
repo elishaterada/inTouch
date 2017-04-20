@@ -18,7 +18,7 @@ import { Profile } from '../models/profile.interface';
         </md-card>
         <md-card
           class="clickable"
-          [ngClass]="{'mat-card--selected': profile === selectedProfile}"
+          [ngClass]="{'mat-card--selected': profile.$key == selectedProfile?.$key}"
           *ngFor="let profile of profiles | async"
           (click)="selectProfile(profile); addMode = false"
         >
@@ -36,16 +36,9 @@ import { Profile } from '../models/profile.interface';
             <app-profile-form></app-profile-form>
           </md-card-content>
         </md-card>
-        <md-card
-          *ngIf="!addMode && selectedProfile"
-          class="mat-card--sm"
-        >
-          <md-card-content>
-            <app-profile-card
-              [profile]="selectedProfile"
-            ></app-profile-card>
-          </md-card-content>
-        </md-card>
+        <div *ngIf="!addMode && selectedProfile">
+          <app-profile-card [selectedProfile]="selectedProfile"></app-profile-card>
+        </div>
       </div>
     </div>
   `,
@@ -53,7 +46,7 @@ import { Profile } from '../models/profile.interface';
 })
 export class MainComponent implements OnInit {
   profiles: FirebaseListObservable<Profile[]>;
-  selectedProfile: object = null;
+  selectedProfile: Profile = null;
   addMode = false;
 
   constructor(af: AngularFire) {
