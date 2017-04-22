@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { ProfileCardComponent } from './main/profile-card/profile-card.component';
 import { ProfileFormComponent } from './main/profile-form/profile-form.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 // Firebase Config
 export const firebaseConfig = {
@@ -27,7 +28,8 @@ export const firebaseConfig = {
     AppComponent,
     MainComponent,
     ProfileCardComponent,
-    ProfileFormComponent
+    ProfileFormComponent,
+    TruncatePipe
   ],
   imports: [
     BrowserModule,

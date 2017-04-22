@@ -23,7 +23,14 @@ import { Profile } from '../models/profile.interface';
           (click)="selectProfile(profile); addMode = false"
         >
           <md-card-content>
-            <p>{{ profile.firstName }} {{ profile.lastName }}</p>
+            <div class="profile-card">
+              <div
+                class="mat-card-avatar profile-card__avatar"
+                [ngStyle]="{ 'background-image': 'url(' + profile.avatar + ')' }">
+                <span *ngIf="!profile.avatar">{{ profile.firstName | truncate : '1' }}{{ profile.lastName | truncate : '1' }}</span>
+              </div>
+              <p>{{ profile.firstName }} {{ profile.lastName }}</p>
+            </div>
           </md-card-content>
         </md-card>
       </div>

@@ -95,6 +95,7 @@ export class ProfileFormComponent implements OnInit {
     company: '',
     email: '',
     phone: '',
+    avatar: '',
     summary: '',
     candidateVibe: 0,
     engagementVibe: 0,

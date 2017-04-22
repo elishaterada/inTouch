@@ -59,3 +59,17 @@ $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-
   grid-template-columns: 370px auto;
   grid-column-gap: 20px;
 }
+
+.profile-card {
+  display: flex;
+  flex-direction: row;
+
+  &__avatar {
+    background-color: mat-color($candy-app-primary);
+    background-size: cover;
+    margin-right: 15px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+  }
+}
