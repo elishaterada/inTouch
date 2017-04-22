@@ -1,18 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Profile } from '../../models/profile.interface';
-import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
 import * as moment from 'moment';
 
 @Component({
   selector: 'app-profile-form',
   template: `
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div>
+    <form novalidate [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="input-group input-group--col-2">
         <md-input-container>
           <input
             mdInput
-            placeholder="First Name"
+            placeholder="First Name *"
             formControlName="firstName"
           >
           <md-error
@@ -23,12 +23,16 @@ import * as moment from 'moment';
         <md-input-container>
           <input
             mdInput
-            placeholder="Last Name"
+            placeholder="Last Name *"
             formControlName="lastName"
           >
+          <md-error
+            *ngIf="required('lastName')">
+            This field is required
+          </md-error>
         </md-input-container>
       </div>
-      <div>
+      <div class="input-group input-group--col-2">
         <md-input-container>
           <input
             mdInput
@@ -44,7 +48,7 @@ import * as moment from 'moment';
           >
         </md-input-container>
       </div>
-      <div>
+      <div class="input-group input-group--col-2">
           <md-input-container>
             <input
               mdInput
@@ -60,8 +64,8 @@ import * as moment from 'moment';
             >
           </md-input-container>
       </div>
-      <div>
-          <md-input-container class="full-width">
+      <div class="input-group input-group--col-1">
+          <md-input-container>
             <textarea
               mdInput
               mdTextareaAutosize
@@ -83,12 +87,21 @@ import * as moment from 'moment';
   `,
   styles: []
 })
-export class ProfileFormComponent implements OnInit {
+export class ProfileFormComponent implements OnChanges {
+  @Input()
+  selectedProfile: Profile;
+
+  // Observables
+  selectedProfileObs: FirebaseObjectObservable<Profile>;
   profiles: FirebaseListObservable<Profile[]>;
+
   profile: Profile;
+
   now: string;
 
   form = this.fb.group({
+    dateCreated: '',
+    dateModified: '',
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     title: '',
@@ -103,25 +116,27 @@ export class ProfileFormComponent implements OnInit {
   });
 
   constructor(
-    af: AngularFire,
+    private af: AngularFire,
     private fb: FormBuilder
   ) {
     this.profiles = af.database.list('/profiles');
   }
 
-  ngOnInit() {
+  ngOnChanges() {
+    this.selectedProfileObs = this.af.database.object(`/profiles/${this.selectedProfile.$key}`);
+    this.selectedProfileObs.subscribe((profile) => {
+      this.profile = Object.assign({}, profile);
+    });
   }
 
   onSubmit() {
-    this.profile = this.form.value;
-
     // Track timestamp
     this.now = moment().format();
-    this.profile.dateCreated = this.now;
-    this.profile.dateModified = this.now;
+
+    this.form.value.dateCreated = this.now;
+    this.form.value.dateModified = this.now;
 
     this.profiles.push(this.form.value);
-
     this.form.reset();
   }
 

@@ -29,10 +29,10 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
     </md-card>
     <md-card class="mat-card--sm">
       <md-card-content>
-        <div>
+        <div class="slider-group">
           <label>Candidate Vibe</label>
           <md-slider
-            class="full-width"
+            class="mat-slider--full-width"
             [max]="sliderMax"
             [min]="sliderMin"
             [step]="sliderStep"
@@ -46,7 +46,7 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
         <div>
           <label>Engagement Vibe</label>
           <md-slider
-            class="full-width"
+            class="mat-slider--full-width"
             [max]="sliderMax"
             [min]="sliderMin"
             [step]="sliderStep"
@@ -60,7 +60,7 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
         <div>
           <label>Team Vibe</label>
           <md-slider
-            class="full-width"
+            class="mat-slider--full-width"
             [max]="sliderMax"
             [min]="sliderMin"
             [step]="sliderStep"
@@ -80,6 +80,7 @@ export class ProfileCardComponent implements OnChanges {
   @Input()
   selectedProfile: Profile;
 
+  // Observables
   profileObs: FirebaseObjectObservable<Profile>;
   profile: Profile;
 
