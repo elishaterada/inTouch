@@ -13,7 +13,7 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
         <div class="profile-card">
           <div class="mat-card-avatar mat-card-avatar--lg  profile-card__avatar-wrapper">
             <div class="mat-card-avatar mat-card-avatar--lg  profile-card__avatar"
-                 [ngStyle]="{ 'background-image': 'url(' + profile?.avatar + '?d=blank)' }"></div>
+                 [ngStyle]="{ 'background-image': 'url(' + profile?.avatar + '?d=blank&s=160)' }"></div>
             <div class="profile-card__initials">
               {{ profile?.firstName | truncate : '1' }}{{ profile?.lastName | truncate : '1' }}
             </div>
