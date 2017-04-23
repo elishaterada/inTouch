@@ -85,6 +85,13 @@ import * as moment from 'moment';
         >
           Save
         </button>
+        <button
+            md-raised-button
+            type="button"
+            (click)="cancel()"
+        >
+          Cancel
+        </button>
       </div>
     </form>
   `,
@@ -96,6 +103,9 @@ export class ProfileEditFormComponent implements OnChanges, OnInit {
 
   @Output()
   onUpdate = new EventEmitter();
+
+  @Output()
+  onCancel = new EventEmitter();
 
   // Observables
   selectedProfileObs: FirebaseObjectObservable<Profile>;
@@ -161,5 +171,9 @@ export class ProfileEditFormComponent implements OnChanges, OnInit {
       this.form.controls[name].hasError('required') &&
       this.form.controls[name].touched
     );
+  }
+
+  cancel() {
+    this.onCancel.emit();
   }
 }

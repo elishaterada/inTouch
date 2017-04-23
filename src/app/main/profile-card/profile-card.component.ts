@@ -45,8 +45,9 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
     >
       <md-card-content>
         <app-profile-edit-form
-            [selectedProfile]="selectedProfile"
+            [selectedProfile]="profile"
             (onUpdate)="editMode = false"
+            (onCancel)="editMode = false"
         ></app-profile-edit-form>
       </md-card-content>
     </md-card>
@@ -120,9 +121,11 @@ export class ProfileCardComponent implements OnChanges {
   }
 
   ngOnChanges() {
+    this.editMode = false;
+
     this.profileObs = this.af.database.object(`/profiles/${this.selectedProfile.$key}`);
     this.profileObs.subscribe((profile) => {
-      this.profile = Object.assign({}, profile);
+      this.profile = profile;
     });
   }
 
