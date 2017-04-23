@@ -53,47 +53,65 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
     </md-card>
     <md-card class="mat-card--sm">
       <md-card-content>
-        <div class="slider-group">
-          <label>Candidate Vibe</label>
-          <md-slider
-            class="mat-slider--full-width"
-            [max]="sliderMax"
-            [min]="sliderMin"
-            [step]="sliderStep"
-            [tickInterval]="sliderTickInterval"
-            thumbLabel
-            [value]="profile?.candidateVibe"
-            (change)="update('candidateVibe', $event)"
-          >
-          </md-slider>
+        <div class="input-group input-group--col-2">
+          <div class="select-group">
+            <label>Status</label>
+            <md-select
+                class="mat-select--full-width"
+                [(ngModel)]="profile.status"
+                (change)="update('status', $event)"
+            >
+              <md-option 
+                  *ngFor="let status of statuses"
+                  [value]="status.value">
+                {{ status.viewValue }}
+              </md-option>
+            </md-select>
+          </div>
+          <div>
+            <label>Candidate Vibe</label>
+            <md-slider
+                class="mat-slider--full-width"
+                [max]="sliderMax"
+                [min]="sliderMin"
+                [step]="sliderStep"
+                [tickInterval]="sliderTickInterval"
+                thumbLabel
+                [value]="profile?.candidateVibe"
+                (change)="update('candidateVibe', $event)"
+            >
+            </md-slider>
+          </div>
         </div>
-        <div>
-          <label>Engagement Vibe</label>
-          <md-slider
-            class="mat-slider--full-width"
-            [max]="sliderMax"
-            [min]="sliderMin"
-            [step]="sliderStep"
-            [tickInterval]="sliderTickInterval"
-            thumbLabel
-            [value]="profile?.engagementVibe"
-            (change)="update('engagementVibe', $event)"
-          >
-          </md-slider>
-        </div>
-        <div>
-          <label>Team Vibe</label>
-          <md-slider
-            class="mat-slider--full-width"
-            [max]="sliderMax"
-            [min]="sliderMin"
-            [step]="sliderStep"
-            [tickInterval]="sliderTickInterval"
-            thumbLabel
-            [value]="profile?.teamVibe"
-            (change)="update('teamVibe', $event)"
-          >
-          </md-slider>
+        <div class="input-group input-group--col-2">
+          <div>
+            <label>Engagement Vibe</label>
+            <md-slider
+              class="mat-slider--full-width"
+              [max]="sliderMax"
+              [min]="sliderMin"
+              [step]="sliderStep"
+              [tickInterval]="sliderTickInterval"
+              thumbLabel
+              [value]="profile?.engagementVibe"
+              (change)="update('engagementVibe', $event)"
+            >
+            </md-slider>
+          </div>
+          <div>
+            <label>Team Vibe</label>
+            <md-slider
+              class="mat-slider--full-width"
+              [max]="sliderMax"
+              [min]="sliderMin"
+              [step]="sliderStep"
+              [tickInterval]="sliderTickInterval"
+              thumbLabel
+              [value]="profile?.teamVibe"
+              (change)="update('teamVibe', $event)"
+            >
+            </md-slider>
+          </div>
         </div>
       </md-card-content>
     </md-card>
@@ -110,6 +128,13 @@ export class ProfileCardComponent implements OnChanges {
 
   // Edit mode
   editMode = false;
+
+  // Candidate Statuses
+  statuses = [
+    { value: 'poaching', viewValue: 'Poaching' },
+    { value: 'interested', viewValue: 'Interested' },
+    { value: 'active', viewValue: 'Active' }
+  ];
 
   // md-slider settings
   sliderMin = 0;

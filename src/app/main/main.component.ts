@@ -31,7 +31,10 @@ import { Profile } from '../models/profile.interface';
                   {{ profile.firstName | truncate : '1' }}{{ profile.lastName | truncate : '1' }}
                 </div>
               </div>
-              <p>{{ profile.firstName }} {{ profile.lastName }}</p>
+              <div>
+                <div class="profile-card__name">{{ profile.firstName }} {{ profile.lastName }}</div>
+                <div class="profile-card__status">{{ getStatus(profile.status) }}</div>
+              </div>
             </div>
           </md-card-content>
         </md-card>
@@ -56,9 +59,20 @@ import { Profile } from '../models/profile.interface';
   styles: []
 })
 export class MainComponent implements OnInit {
+  // Observables
   profiles: FirebaseListObservable<Profile[]>;
+
   selectedProfile: Profile = null;
+
+  // Modes
   addMode = false;
+
+  // Candidate Statuses
+  statuses = {
+    'poaching': 'Poaching',
+    'interested': 'Interested',
+    'active': 'Active'
+  };
 
   constructor(af: AngularFire) {
     this.profiles = af.database.list('/profiles');
@@ -69,5 +83,9 @@ export class MainComponent implements OnInit {
 
   selectProfile(profile) {
     this.selectedProfile = profile;
+  }
+
+  getStatus(status) {
+    return this.statuses[status];
   }
 }

@@ -111,6 +111,7 @@ export class ProfileCreateFormComponent {
     phone: '',
     avatar: '',
     summary: '',
+    status: '',
     candidateVibe: 0,
     engagementVibe: 0,
     teamVibe: 0
