@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MdButtonModule, MdInputModule, MdCardModule, MdSliderModule } from '@angular/material';
+import { MdButtonModule, MdIconModule, MdInputModule, MdCardModule, MdSliderModule, MdTooltipModule } from '@angular/material';
 import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
@@ -13,6 +13,7 @@ import { MainComponent } from './main/main.component';
 import { ProfileCardComponent } from './main/profile-card/profile-card.component';
 import { ProfileFormComponent } from './main/profile-form/profile-form.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { ProfileEditFormComponent } from './main/profile-edit-form/profile-edit-form.component';
 
 // Firebase Config
 export const firebaseConfig = {
@@ -29,7 +30,8 @@ export const firebaseConfig = {
     MainComponent,
     ProfileCardComponent,
     ProfileFormComponent,
-    TruncatePipe
+    TruncatePipe,
+    ProfileEditFormComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,8 @@ export const firebaseConfig = {
     HttpModule,
     AppRoutingModule,
     MdButtonModule,
+    MdIconModule,
+    MdTooltipModule,
     MdCardModule,
     MdInputModule,
     MdSliderModule,

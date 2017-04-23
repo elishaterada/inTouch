@@ -5,7 +5,10 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
 @Component({
   selector: 'app-profile-card',
   template: `
-    <md-card class="mat-card--sm">
+    <md-card
+        *ngIf="editMode === false"
+        class="mat-card--sm"
+    >
       <md-card-content>
         <p>
           {{ profile?.firstName }} {{ profile?.lastName }}
@@ -25,6 +28,26 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
         <p>
           {{ profile?.summary }}
         </p>
+      </md-card-content>
+      <md-card-actions>
+        <button
+            md-icon-button
+            mdTooltip="Edit Profile"
+            (click)="editMode = true"
+        >
+          <md-icon>edit</md-icon>
+        </button>
+      </md-card-actions>
+    </md-card>
+    <md-card
+        *ngIf="editMode === true"
+        class="mat-card--sm"
+    >
+      <md-card-content>
+        <app-profile-edit-form
+            [selectedProfile]="selectedProfile"
+            (onUpdate)="editMode = false"
+        ></app-profile-edit-form>
       </md-card-content>
     </md-card>
     <md-card class="mat-card--sm">
@@ -83,6 +106,9 @@ export class ProfileCardComponent implements OnChanges {
   // Observables
   profileObs: FirebaseObjectObservable<Profile>;
   profile: Profile;
+
+  // Edit mode
+  editMode = false;
 
   // md-slider settings
   sliderMin = 0;

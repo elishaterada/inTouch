@@ -1,7 +1,7 @@
-import {Component, Input, OnChanges } from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Profile } from '../../models/profile.interface';
-import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import * as moment from 'moment';
 
 @Component({
@@ -87,21 +87,17 @@ import * as moment from 'moment';
   `,
   styles: []
 })
-export class ProfileFormComponent implements OnChanges {
-  @Input()
-  selectedProfile: Profile;
+export class ProfileFormComponent {
+  @Output()
+  onCreate = new EventEmitter();
 
   // Observables
-  selectedProfileObs: FirebaseObjectObservable<Profile>;
   profiles: FirebaseListObservable<Profile[]>;
 
   profile: Profile;
-
   now: string;
 
   form = this.fb.group({
-    dateCreated: '',
-    dateModified: '',
     firstName: ['', Validators.required],
     lastName: ['', Validators.required],
     title: '',
@@ -122,21 +118,17 @@ export class ProfileFormComponent implements OnChanges {
     this.profiles = af.database.list('/profiles');
   }
 
-  ngOnChanges() {
-    this.selectedProfileObs = this.af.database.object(`/profiles/${this.selectedProfile.$key}`);
-    this.selectedProfileObs.subscribe((profile) => {
-      this.profile = Object.assign({}, profile);
-    });
-  }
-
   onSubmit() {
     // Track timestamp
     this.now = moment().format();
 
-    this.form.value.dateCreated = this.now;
-    this.form.value.dateModified = this.now;
+    this.profile = this.form.value;
+    this.profile.dateCreated = this.now;
+    this.profile.dateModified = this.now;
 
-    this.profiles.push(this.form.value);
+    this.profiles.push(this.profile);
+    this.onCreate.emit();
+
     this.form.reset();
   }
 

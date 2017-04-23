@@ -40,7 +40,9 @@ import { Profile } from '../models/profile.interface';
           class="mat-card--sm"
         >
           <md-card-content>
-            <app-profile-form></app-profile-form>
+            <app-profile-form
+                (onCreate)="selectedProfile = null; addMode = false;"
+            ></app-profile-form>
           </md-card-content>
         </md-card>
         <div *ngIf="!addMode && selectedProfile">
@@ -66,5 +68,4 @@ export class MainComponent implements OnInit {
   selectProfile(profile) {
     this.selectedProfile = profile;
   }
-
 }
