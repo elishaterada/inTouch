@@ -14,5 +14,9 @@ exports.gravatar = functions.database
       return event.data.adminRef.update({
         avatar: gravatarUrl
       })
+    } else {
+      return event.data.adminRef.update({
+        avatar: ''
+      })
     }
   });

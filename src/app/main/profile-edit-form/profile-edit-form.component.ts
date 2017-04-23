@@ -143,16 +143,7 @@ export class ProfileEditFormComponent implements OnChanges, OnInit {
       this.profile = profile;
     });
 
-    this.form.patchValue({
-      firstName: this.selectedProfile.firstName,
-      lastName: this.selectedProfile.lastName,
-      title: this.selectedProfile.title,
-      company: this.selectedProfile.company,
-      email: this.selectedProfile.email,
-      phone: this.selectedProfile.phone,
-      avatar: this.selectedProfile.avatar,
-      summary: this.selectedProfile.summary
-    });
+    this.form.patchValue(this.selectedProfile);
   }
 
   ngOnInit() {
