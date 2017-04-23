@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { ProfileCardComponent } from './main/profile-card/profile-card.component';
-import { ProfileFormComponent } from './main/profile-form/profile-form.component';
+import { ProfileCreateFormComponent } from './main/profile-create-form/profile-create-form.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ProfileEditFormComponent } from './main/profile-edit-form/profile-edit-form.component';
 
@@ -29,7 +29,7 @@ export const firebaseConfig = {
     AppComponent,
     MainComponent,
     ProfileCardComponent,
-    ProfileFormComponent,
+    ProfileCreateFormComponent,
     TruncatePipe,
     ProfileEditFormComponent
   ],

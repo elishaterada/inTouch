@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileFormComponent } from './profile-form.component';
+import { ProfileCreateFormComponent } from './profile-create-form.component';
 
-describe('ProfileFormComponent', () => {
-  let component: ProfileFormComponent;
-  let fixture: ComponentFixture<ProfileFormComponent>;
+describe('ProfileCreateFormComponent', () => {
+  let component: ProfileCreateFormComponent;
+  let fixture: ComponentFixture<ProfileCreateFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileFormComponent ]
+      declarations: [ ProfileCreateFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfileFormComponent);
+    fixture = TestBed.createComponent(ProfileCreateFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

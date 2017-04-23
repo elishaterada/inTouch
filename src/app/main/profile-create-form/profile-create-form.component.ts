@@ -92,7 +92,7 @@ import * as moment from 'moment';
   `,
   styles: []
 })
-export class ProfileFormComponent {
+export class ProfileCreateFormComponent {
   @Output()
   onCreate = new EventEmitter();
 
