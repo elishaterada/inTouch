@@ -10,34 +10,45 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
         class="mat-card--sm"
     >
       <md-card-content>
-        <p>
-          {{ profile?.firstName }} {{ profile?.lastName }}
-        </p>
-        <p>
-          {{ profile?.title }}
-        </p>
-        <p>
-          {{ profile?.company }}
-        </p>
-        <p>
-          {{ profile?.email }}
-        </p>
-        <p>
-          {{ profile?.phone }}
-        </p>
+        <div class="profile-card">
+          <div class="mat-card-avatar mat-card-avatar--lg  profile-card__avatar-wrapper">
+            <div class="mat-card-avatar mat-card-avatar--lg  profile-card__avatar"
+                 [ngStyle]="{ 'background-image': 'url(' + profile?.avatar + '?d=blank)' }"></div>
+            <div class="profile-card__initials">
+              {{ profile?.firstName | truncate : '1' }}{{ profile?.lastName | truncate : '1' }}
+            </div>
+          </div>
+          <div>
+            <div class="profile-card__name">{{ profile?.firstName }} {{ profile?.lastName }}</div>
+            <div class="profile-card__work">
+              <span *ngIf="profile?.title">{{ profile?.title }}</span>
+              <span *ngIf="profile?.title && profile?.company">at</span>
+              <span *ngIf="profile?.company">{{ profile?.company }}</span>
+            </div>
+            <div class="profile-card__contact">
+              <span *ngIf="profile?.email" class="profile-card__contact__info">
+                <md-icon class="mat-icon--xs">email</md-icon> {{ profile?.email }}
+              </span>
+              <span *ngIf="profile?.phone" class="profile-card__contact__info">
+                <md-icon class="mat-icon--xs">phone</md-icon> {{ profile?.phone }}
+              </span>
+            </div>
+          </div>
+          <div class="profile-card__actions">
+            <button
+                md-icon-button
+                mdTooltip="Edit Profile"
+                color="accent"
+                (click)="editMode = true"
+            >
+              <md-icon>edit</md-icon>
+            </button>
+          </div>
+        </div>
         <p>
           {{ profile?.summary }}
         </p>
       </md-card-content>
-      <md-card-actions>
-        <button
-            md-icon-button
-            mdTooltip="Edit Profile"
-            (click)="editMode = true"
-        >
-          <md-icon>edit</md-icon>
-        </button>
-      </md-card-actions>
     </md-card>
     <md-card
         *ngIf="editMode === true"

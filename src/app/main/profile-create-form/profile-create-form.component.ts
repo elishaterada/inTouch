@@ -1,4 +1,4 @@
-import {Component, Output, EventEmitter} from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Profile } from '../../models/profile.interface';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
