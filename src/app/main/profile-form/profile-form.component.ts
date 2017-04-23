@@ -2,6 +2,7 @@ import {Component, Output, EventEmitter} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Profile } from '../../models/profile.interface';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { CustomValidators } from 'ng2-validation';
 import * as moment from 'moment';
 
 @Component({
@@ -55,6 +56,10 @@ import * as moment from 'moment';
               placeholder="Email"
               formControlName="email"
             >
+            <md-error
+                *ngIf="invalid('email')">
+              Please enter a valid email address
+            </md-error>
           </md-input-container>
           <md-input-container>
             <input
@@ -102,7 +107,7 @@ export class ProfileFormComponent {
     lastName: ['', Validators.required],
     title: '',
     company: '',
-    email: '',
+    email: ['', CustomValidators.email],
     phone: '',
     avatar: '',
     summary: '',
@@ -135,6 +140,13 @@ export class ProfileFormComponent {
   required(name: string) {
     return (
       this.form.controls[name].hasError('required') &&
+      this.form.controls[name].touched
+    );
+  }
+
+  invalid(name: string) {
+    return (
+      this.form.controls[name].hasError &&
       this.form.controls[name].touched
     );
   }
