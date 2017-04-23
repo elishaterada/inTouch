@@ -8,6 +8,11 @@ exports.gravatar = functions.database
   .ref('/profiles/{profileId}').onWrite(event => {
     const profile = event.data.val();
 
+    // Exit when the data is deleted.
+    if (!event.data.exists()) {
+      return;
+    }
+
     if(profile.email) {
       const gravatarUrl = gravatar.url(profile.email);
 
