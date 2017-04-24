@@ -5,7 +5,9 @@ import { MdIconRegistry } from '@angular/material';
 @Component({
   selector: 'app-root',
   template: `
-  <!-- TODO: Header -->
+  <md-toolbar color="primary">
+    <span>inTouch</span>
+  </md-toolbar>
   <router-outlet></router-outlet>
   `,
   styles: []

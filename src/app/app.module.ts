@@ -9,7 +9,8 @@ import {
   MdCardModule,
   MdSliderModule,
   MdTooltipModule,
-  MdSelectModule
+  MdSelectModule,
+  MdToolbarModule
 } from '@angular/material';
 import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -54,6 +55,7 @@ export const firebaseConfig = {
     MdInputModule,
     MdSliderModule,
     MdSelectModule,
+    MdToolbarModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],

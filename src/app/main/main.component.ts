@@ -39,7 +39,7 @@ import { Profile } from '../models/profile.interface';
           </md-card-content>
         </md-card>
       </div>
-      <div>
+      <div class="spacer">
         <md-card
           *ngIf="addMode"
           class="mat-card--sm"

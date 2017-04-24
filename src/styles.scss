@@ -31,6 +31,8 @@ $font-weight-semibold: 600;
 // Defaults
 
 body {
+  margin: 0;
+
   .mat-button-toggle,
   %mat-button-base,
   .mat-button,
@@ -68,18 +70,12 @@ label {
   cursor: pointer;
 }
 
-// Molecules
-
-.input-group {
-  display: grid;
-  &--col-1 {
-    grid-template-columns: auto;
-  }
-  &--col-2 {
-    grid-template-columns: 48% 48%;
-    grid-column-gap: 4%;
-  }
+.spacer {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
+
+// MD Overrides
 
 .mat-slider {
   &--full-width {
@@ -135,6 +131,19 @@ label {
     height: 18px;
     font-size: 18px;
     vertical-align: middle;
+  }
+}
+
+// Molecules
+
+.input-group {
+  display: grid;
+  &--col-1 {
+    grid-template-columns: auto;
+  }
+  &--col-2 {
+    grid-template-columns: 48% 48%;
+    grid-column-gap: 4%;
   }
 }
 
