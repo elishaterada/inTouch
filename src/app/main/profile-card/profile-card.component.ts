@@ -45,9 +45,33 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
             </button>
           </div>
         </div>
-        <p>
+        <div class="social-media">
+          <div *ngIf="profile.twitter" class="social-media__item">
+            <a [href]="profile.twitter" title="Twitter" target="_blank" mdTooltip="Twitter">
+              <md-icon class="mat-icon--sm" svgIcon="twitter"></md-icon>
+            </a>
+          </div>
+          <div *ngIf="profile.github" class="social-media__item">
+            <a [href]="profile.github" title="GitHub" target="_blank" mdTooltip="GitHub">
+              <md-icon class="mat-icon--sm" svgIcon="github"></md-icon>
+            </a>
+          </div>
+          <div *ngIf="profile.linkedin" class="social-media__item">
+            <a [href]="profile.linkedin" title="LinkedIn" target="_blank" mdTooltip="LinkedIn">
+              <md-icon class="mat-icon--sm" svgIcon="linkedin"></md-icon>
+            </a>
+          </div>
+        </div>
+        <p *ngIf="profile.summary">
           {{ profile?.summary }}
         </p>
+        <button
+            md-button
+            *ngIf="!profile.summary"
+            (click)="editMode = true"
+        >
+          Add Summary
+        </button>
       </md-card-content>
     </md-card>
     <md-card

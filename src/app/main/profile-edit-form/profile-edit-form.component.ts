@@ -77,9 +77,37 @@ import * as moment from 'moment';
             <textarea
                 mdInput
                 mdTextareaAutosize
+                mdAutosizeMinRows="3"
                 placeholder="Summary"
                 formControlName="summary"
             ></textarea>
+        </md-input-container>
+      </div>
+      <div class="input-group input-group--col-1">
+        <md-input-container>
+          <input
+              mdInput
+              placeholder="Twitter URL"
+              formControlName="twitter"
+          >
+        </md-input-container>
+      </div>
+      <div class="input-group input-group--col-1">
+        <md-input-container>
+          <input
+              mdInput
+              placeholder="GitHub URL"
+              formControlName="github"
+          >
+        </md-input-container>
+      </div>
+      <div class="input-group input-group--col-1">
+        <md-input-container>
+          <input
+              mdInput
+              placeholder="LinkedIn URL"
+              formControlName="linkedin"
+          >
         </md-input-container>
       </div>
       <div>
@@ -127,7 +155,10 @@ export class ProfileEditFormComponent implements OnChanges, OnInit {
     email: ['', [CustomValidators.email]],
     phone: '',
     avatar: '',
-    summary: ''
+    summary: '',
+    twitter: ['', CustomValidators.url],
+    github: ['', CustomValidators.url],
+    linkedin: ['', CustomValidators.url]
   });
 
   constructor(

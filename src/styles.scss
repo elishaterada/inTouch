@@ -129,6 +129,13 @@ label {
     font-size: 14px;
     vertical-align: middle;
   }
+
+  &.mat-icon--sm {
+    width: 18px;
+    height: 18px;
+    font-size: 18px;
+    vertical-align: middle;
+  }
 }
 
 .profile-card {
@@ -196,6 +203,19 @@ label {
 
   &__actions {
 
+  }
+}
+
+.social-media {
+  margin-top: 1em;
+
+  &__item {
+    display: inline-block;
+    margin-right: 0.5em;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 
