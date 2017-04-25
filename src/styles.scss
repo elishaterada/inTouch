@@ -91,9 +91,6 @@ label {
 }
 
 .mat-card {
-  &--sm {
-    width: 500px;
-  }
   &::before {
     transition: all 0.25s ease;
     opacity: 0;
@@ -233,6 +230,6 @@ label {
 
 #main-container {
   display: grid;
-  grid-template-columns: 370px auto;
+  grid-template-columns: 370px 500px;
   grid-column-gap: 20px;
 }

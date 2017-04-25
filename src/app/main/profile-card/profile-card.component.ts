@@ -8,7 +8,6 @@ import { MdDialog, MdDialogRef } from '@angular/material';
   template: `
     <md-card
         *ngIf="editMode === false"
-        class="mat-card--sm"
     >
       <md-card-content>
         <div class="profile-card">
@@ -90,7 +89,6 @@ import { MdDialog, MdDialogRef } from '@angular/material';
     </md-card>
     <md-card
         *ngIf="editMode === true"
-        class="mat-card--sm"
     >
       <md-card-content>
         <app-profile-edit-form
@@ -100,7 +98,7 @@ import { MdDialog, MdDialogRef } from '@angular/material';
         ></app-profile-edit-form>
       </md-card-content>
     </md-card>
-    <md-card class="mat-card--sm">
+    <md-card>
       <md-card-content>
         <div class="input-group input-group--col-2">
           <div class="select-group">
