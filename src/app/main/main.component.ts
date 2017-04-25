@@ -51,7 +51,10 @@ import { Profile } from '../models/profile.interface';
           </md-card-content>
         </md-card>
         <div *ngIf="!addMode && selectedProfile">
-          <app-profile-card [selectedProfile]="selectedProfile"></app-profile-card>
+          <app-profile-card
+              [selectedProfile]="selectedProfile"
+              (onDelete)="deletedProfile()"
+          ></app-profile-card>
         </div>
       </div>
     </div>
@@ -87,5 +90,9 @@ export class MainComponent implements OnInit {
 
   getStatus(status) {
     return this.statuses[status];
+  }
+
+  deletedProfile() {
+    this.selectedProfile = null;
   }
 }

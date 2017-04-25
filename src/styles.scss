@@ -53,7 +53,8 @@ body {
   .mat-tab-label,
   .mat-slide-toggle-content,
   .mat-toolbar,
-  .mat-tooltip  {
+  .mat-tooltip,
+  .mat-dialog-container {
     font-family: $mat-font-family;
   }
 }

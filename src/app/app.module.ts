@@ -10,7 +10,9 @@ import {
   MdSliderModule,
   MdTooltipModule,
   MdSelectModule,
-  MdToolbarModule
+  MdToolbarModule,
+  MdMenuModule,
+  MdDialogModule
 } from '@angular/material';
 import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,7 +21,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { ProfileCardComponent } from './main/profile-card/profile-card.component';
+import { ProfileCardComponent, DeleteConfirmationDialogComponent } from './main/profile-card/profile-card.component';
 import { ProfileCreateFormComponent } from './main/profile-create-form/profile-create-form.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { ProfileEditFormComponent } from './main/profile-edit-form/profile-edit-form.component';
@@ -40,8 +42,10 @@ export const firebaseConfig = {
     ProfileCardComponent,
     ProfileCreateFormComponent,
     TruncatePipe,
-    ProfileEditFormComponent
+    ProfileEditFormComponent,
+    DeleteConfirmationDialogComponent
   ],
+  entryComponents: [DeleteConfirmationDialogComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -56,6 +60,8 @@ export const firebaseConfig = {
     MdSliderModule,
     MdSelectModule,
     MdToolbarModule,
+    MdMenuModule,
+    MdDialogModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],

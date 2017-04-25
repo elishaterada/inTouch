@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { Profile } from '../../models/profile.interface';
 import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
+import { MdDialog, MdDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-profile-card',
@@ -37,12 +38,25 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
           <div class="profile-card__actions">
             <button
                 md-icon-button
-                mdTooltip="Edit Profile"
-                color="accent"
-                (click)="editMode = true"
-            >
-              <md-icon>edit</md-icon>
+                [mdMenuTriggerFor]="menu">
+              <md-icon>more_vert</md-icon>
             </button>
+            <md-menu #menu="mdMenu">
+              <button
+                  md-menu-item
+                  (click)="editMode = true"
+              >
+                <md-icon>edit</md-icon>
+                <span>Edit</span>
+              </button>
+              <button
+                  md-menu-item
+                  (click)="confirmDelete()"
+              >
+                <md-icon>delete</md-icon>
+                <span>Delete</span>
+              </button>
+            </md-menu>
           </div>
         </div>
         <div class="social-media">
@@ -153,9 +167,13 @@ import { AngularFire, FirebaseObjectObservable } from 'angularfire2';
   `,
   styles: []
 })
+
 export class ProfileCardComponent implements OnChanges {
   @Input()
   selectedProfile: Profile;
+
+  @Output()
+  onDelete = new EventEmitter();
 
   // Observables
   profileObs: FirebaseObjectObservable<Profile>;
@@ -177,7 +195,10 @@ export class ProfileCardComponent implements OnChanges {
   sliderStep = 1;
   sliderTickInterval = 1;
 
-  constructor(private af: AngularFire) {
+  constructor(
+    private af: AngularFire,
+    public dialog: MdDialog
+  ) {
   }
 
   ngOnChanges() {
@@ -191,5 +212,42 @@ export class ProfileCardComponent implements OnChanges {
 
   update(key, event) {
     this.profileObs.update({ [key]: event.value });
+  }
+
+  confirmDelete() {
+    const dialogRef = this.dialog.open(DeleteConfirmationDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.onDelete.emit();
+        this.profileObs.remove();
+      }
+    });
+  }
+}
+
+@Component({
+  selector: 'app-delete-confirmation-dialog',
+  template: `
+    <div>
+      <h1 md-dialog-title>Confirmation</h1>
+      <md-dialog-content>Are you sure? This action cannot be undone.</md-dialog-content>
+      <md-dialog-actions>
+        <button md-button color="warn" (click)="confirmDelete()">Delete</button>
+        <button md-button (click)="cancelDelete()">Cancel</button>
+      </md-dialog-actions>
+    </div>
+  `,
+})
+export class DeleteConfirmationDialogComponent {
+  constructor(
+    public dialogRef: MdDialogRef<DeleteConfirmationDialogComponent>
+  ) {}
+
+  confirmDelete() {
+    this.dialogRef.close(true);
+  }
+
+  cancelDelete() {
+    this.dialogRef.close(false);
   }
 }
